@@ -1,0 +1,156 @@
+#!/usr/bin/python -tt
+# -*- coding: utf-8 -*-
+
+import os,shutil,sys,unicodedata
+
+from argparse import ArgumentParser
+
+def existe_directorio(d):
+	if os.path.isdir(d):
+		return True
+	else:
+		return False
+
+def reemplazar_espacios(direct,lista_dir):
+	print lista_dir
+	for arch in lista_dir:
+		arch_new=arch.replace(' ','_')
+		os.rename(arch,arch_new)
+
+
+def reemplazar_mayusc(direct,lista_dir):
+	lista_nueva=[]
+	for arch in lista_dir:
+		if not arch.islower():
+			arch_new=arch.lower()
+			os.rename(arch,arch_new)
+
+def reemplazar_enne(direct,lista_dir):
+	for arch in lista_dir:
+		arch_new=arch.replace(u'ñ',u'nn')
+		os.rename(arch,arch_new)
+
+def reemplazar_a(direct,lista_dir):
+	for arch in lista_dir:
+		arch_new=arch.replace(u'á','a')
+		os.rename(arch,arch_new)
+
+def reemplazar_e(direct,lista_dir):
+	for arch in lista_dir:
+		arch_new=arch.replace(u'é','e')
+		os.rename(arch,arch_new)
+
+def reemplazar_i(direct,lista_dir):
+	for arch in lista_dir:
+		arch_new=arch.replace(u'í','i')
+		os.rename(arch,arch_new)
+
+def reemplazar_o(direct,lista_dir):
+	for arch in lista_dir:
+			arch_new=arch.replace(u'ó','o')
+			os.rename(arch,arch_new)
+
+def reemplazar_u(direct,lista_dir):
+	for arch in lista_dir:
+		arch_new=arch.replace(u'ú','u')
+		os.rename(arch,arch_new)
+
+
+def reemplazar_raros(direct,lista_dir):
+	raros=[u'¨', u"º", u'-', u'~',u"#",u"@", u"|", u"!",u"·", u"$", u"%", u"&", u"/",u"(", u")", u"?", u"¡",u"¿", u"[", u"^", u"<code>", u"]",u"+", u"}", u"{", u"¨", u"´",u">", u"< ", u";", u",", u":",u".", u" "]
+	for arch in lista_dir:
+		for y in raros:
+			arch_new=arch.replace(y,'_')
+			if arch!= arch_new:
+				arch_new=arch_new.replace(y,'_')
+				os.rename(arch,arch_new)
+
+
+
+def procesar_directorio(direct,direct_inicial):
+	
+	direct_intro=direct
+	lista_dir=os.listdir(direct)
+	#print lista_dir
+	direct=os.chdir(direct)
+	reemplazar_espacios(direct,lista_dir)
+
+	os.chdir(direct_inicial)
+	lista_dir=os.listdir(direct_intro)
+	#print lista_dir
+	direct=os.chdir(direct_intro)
+	reemplazar_mayusc(direct,lista_dir)
+	
+
+	os.chdir(direct_inicial)
+	lista_dir=os.listdir(direct_intro)
+	#print lista_dir
+	direct=os.chdir(direct_intro)
+	reemplazar_enne(direct,lista_dir)
+	
+
+	os.chdir(direct_inicial)
+	lista_dir=os.listdir(direct_intro)
+	#print lista_dir
+	direct=os.chdir(direct_intro)
+	reemplazar_a(direct,lista_dir)
+
+	os.chdir(direct_inicial)
+	lista_dir=os.listdir(direct_intro)
+	#print lista_dir
+	direct=os.chdir(direct_intro)
+	reemplazar_e(direct,lista_dir)
+
+	os.chdir(direct_inicial)
+	lista_dir=os.listdir(direct_intro)
+	#print lista_dir
+	direct=os.chdir(direct_intro)
+	reemplazar_i(direct,lista_dir)
+
+	os.chdir(direct_inicial)
+	lista_dir=os.listdir(direct_intro)
+	#print lista_dir
+	direct=os.chdir(direct_intro)
+	reemplazar_o(direct,lista_dir)
+
+	os.chdir(direct_inicial)
+	lista_dir=os.listdir(direct_intro)
+	#print lista_dir
+	direct=os.chdir(direct_intro)
+	reemplazar_u(direct,lista_dir)
+
+	os.chdir(direct_inicial)
+	lista_dir=os.listdir(direct_intro)
+	#print lista_dir
+	direct=os.chdir(direct_intro)
+	reemplazar_raros(direct,lista_dir)
+
+
+
+def main():
+	parser = ArgumentParser()
+	parser.add_argument("directorio", help="Directorio o directorios",nargs="*")
+	argumentos=parser.parse_args()
+
+	ad=argumentos.directorio
+	if len(sys.argv)<2:
+			print "Trabajamos sobre el directorio actual"
+			direct_inicial=os.getcwd()
+			procesar_directorio(u".")
+
+	else:
+		for direct in ad:
+			exists=existe_directorio(direct)
+			if exists==False:
+				print "El directorio",direct,"no existe, inténtelo de nuevo"
+				raise SystemExit
+
+			else:
+				direct_inicial=os.getcwd()
+				procesar_directorio(unicode(direct),unicode(direct_inicial))
+
+	
+
+
+if __name__ == "__main__":
+  main()

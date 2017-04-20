@@ -1,0 +1,11 @@
+#!/usr/bin/python -tt
+# -*- coding: utf-8 -*-
+
+import sys
+import os
+print sys.argv[:]
+
+if len(sys.argv) == 0:
+   print "Trabajamos sobre el directorio actual";
+else:
+   print "Este programa necesita un parámetro";

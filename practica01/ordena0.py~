@@ -1,0 +1,49 @@
+#!/usr/bin/python -tt
+# -*- coding: utf-8 -*-
+
+import types
+
+#if type("2") == types.IntType:
+ #   print "OK, es un int"
+#elif lista=null: si la lista está vacía es un elemento no permitido
+#    raise SystemExit
+#else:
+ #   raise SystemExit si la lista no es un entero tampoco se permite
+
+
+lista=[[1,3],[5],[0],[2,2,2]]
+print "lista=", lista
+
+
+lista_de_sumas=[]
+
+for x in lista:
+    s=sum(x)
+    lista_de_sumas.append(s)
+
+lista_de_sumas.sort()
+
+#print lista_de_sumas
+#print lista
+
+lista_aux=[]
+
+for x in lista:
+    s=sum(x)
+ #   print "x",x
+ #   print "s",s
+    pos_lista=lista.index(x)
+    pos_ls=lista_de_sumas.index(s);
+  #  print "p ", pos_lista
+  #  print "ps ", pos_ls
+    lista_aux.insert(pos_ls,x)
+
+#print "Lista de sumas=",lista_de_sumas
+#print "lista= ",lista
+print "lista_ordenada=", lista_aux
+
+
+
+
+
+

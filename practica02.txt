@@ -1,0 +1,225 @@
+Práctica 2.1. Holamundo xml
+_______________________________________________________________________________
+<?xml version="1.1" encoding="UTF-8"?>
+<coches>
+    <coche
+	matricula="1900 T"
+	marca="Audi"
+	modelo="A4"
+/>
+    <coche
+	matricula="0056 L"
+	marca="Ferrari"
+	modelo="FF"
+/>
+</coches>
+_______________________________________________________________________________
+Práctica 2.2. xmlpp //// Práctica 2.3. xmlcheck
+_______________________________________________________________________________
+lorena@Lorena-PC:~/st/practica02$ xmlpp coches.xml
+<?xml version="1.1" encoding="UTF-8"?>
+<coches>
+    <coche
+	matricula="1900 T"
+	marca="Audi"
+	modelo="A4"
+/>
+    <coche
+	matricula="0056 L"
+	marca="Ferrari"
+	modelo="FF"
+/>
+</coches>
+
+lorena@Lorena-PC:~/st/practica02$ xmlcheck coches.xml
+coches.xml is a well-formed xml document
+
+
+_______________________________________________________________________________
+
+Práctica 2.4. discoteca.xml
+_______________________________________________________________________________
+DISCOTECA01.XML
+lorena@Lorena-PC:~/st/practica02$ xmlcheck discoteca01.xml
+discoteca01.xml is a well-formed xml document
+
+DISCOTECA02.XML
+lorena@Lorena-PC:~/st/practica02$ xmlcheck discoteca02.xml
+discoteca02.xml is a well-formed xml document
+
+_______________________________________________________________________________
+
+Práctica 2.5. mixmlpp //// Práctica 2.6. mixmlpp desde stdin
+_______________________________________________________________________________
+Como mixmlpp no tiene extensión .py no me dejaba exportar las funciones de xmlpp por lo que en la carpeta también he creado un xmlpp.py que tiene el mismo contenido que el xmlpp original del cual exporto las funciones que necesito.
+
+Si no metemos ningún fichero a la entrada y escribimos con stdin el resultado es como el del ejemplo.
+lorena@Lorena-PC:~/st/practica02$ ./mixmlpp
+<?xml version="1.1" encoding="UTF-8"?>
+<coches><coche
+	matricula="1900 T"
+	marca="Audi"
+	modelo="A4"/>
+    <coche
+	matricula="0056 L"
+	marca="Ferrari"
+	modelo="FF"/></coches>
+<?xml version="1.1" encoding="UTF-8"?>
+<coches>
+    <coche
+	matricula="1900 T"
+	marca="Audi"
+	modelo="A4"/>
+    <coche
+	matricula="0056 L"
+	marca="Ferrari"
+	modelo="FF"/>
+</coches>
+
+Si le pasamos un fichero de entrada y otro de salida el resultado será este:
+Fichero de entrada:
+<?xml version="1.1" encoding="UTF-8"?>
+<coches><coche
+	matricula="1900 T"
+	marca="Audi"
+	modelo="A4"
+/><coche
+matricula="0056 L"
+	marca="Ferrari"
+	modelo="FF"
+/></coches>
+Fichero de salida:
+<?xml version="1.1" encoding="UTF-8"?>
+<coches>
+    <coche
+	matricula="1900 T"
+	marca="Audi"
+	modelo="A4"
+/>
+    <coche
+matricula="0056 L"
+	marca="Ferrari"
+	modelo="FF"
+/>
+</coches>
+
+Aunque no sean rescogidos, he dejado en la carpeta los dos ficheros : cochespru.xml y salida
+
+_______________________________________________________________________________
+
+Práctica 2.7. procesa_coches
+_______________________________________________________________________________
+lorena@Lorena-PC:~/st/practica02$ ./procesa_coches.py coches.xml
+Matricula   Modelo    Marca
+---------------------------- 
+1900 T       A4       Audi
+0056 L       FF       Ferrari
+
+Si en lugar de pasar coches.xml se lo escribimos por la entrada, el resultado será el mismo
+lorena@Lorena-PC:~/st/practica02$ ./procesa_coches.py
+<?xml version="1.1" encoding="UTF-8"?>
+<coches>
+    <coche
+	matricula="1900 T"
+	marca="Audi"
+	modelo="A4"
+/>
+    <coche
+	matricula="0056 L"
+	marca="Ferrari"
+	modelo="FF"
+/>
+</coches>
+
+Matricula   Modelo    Marca
+---------------------------- 
+1900 T       A4       Audi
+0056 L       FF       Ferrari
+
+_______________________________________________________________________________
+
+Práctica 2.8. procesa_discoteca
+_______________________________________________________________________________
+
+procesa_discoteca.py está específicamente diseñado para procesar discoteca02.xml
+lorena@Lorena-PC:~/st/practica02$ ./procesa_discoteca.py discoteca02.xml
+Manuel Carrasco  /  Bailar el viento  /  2015
+----------------------------------------------
+1.Tambores de guerra
+2.Bailar el viento
+3.Ya no 
+4.Siendo uno mismo
+5.Uno x uno
+6.Pequeña sonrisa sonora
+7.Yo quiero vivir
+8.Amor planetario
+9.La voz de dentro
+10.No tengo prisa
+Coldplay  /  Head full of dreams  /  2015
+----------------------------------------------
+1.A Head Full Of Dreams
+2.Birds
+3.Hymn For The Weekend 
+4.Everglow
+5.Adventure Of A Lifetime
+6.Fun
+7.Kaleidoscope
+8.Army Of One
+9.Amazing Day
+10.Colour Spectrum
+
+Si escribimos discoteca02.xml por stdin el resultado será idéntico
+lorena@Lorena-PC:~/st/practica02$ ./procesa_discoteca.py
+<?xml version="1.1" encoding="UTF-8"?>
+<discos>
+    <disco titulo="Bailar el viento" autor="Manuel Carrasco" publicacion="2015">
+        <cancion>1.Tambores de guerra</cancion>
+        <cancion>2.Bailar el viento</cancion>
+        <cancion>3.Ya no </cancion>
+        <cancion>4.Siendo uno mismo</cancion>
+        <cancion>5.Uno x uno</cancion>
+        <cancion>6.Pequeña sonrisa sonora</cancion>
+        <cancion>7.Yo quiero vivir</cancion>
+        <cancion>8.Amor planetario</cancion>
+        <cancion>9.La voz de dentro</cancion>
+        <cancion>10.No tengo prisa</cancion>
+    </disco>
+    <disco titulo="Head full of dreams" autor="Coldplay" publicacion="2015">
+        <cancion>1.A Head Full Of Dreams</cancion>
+        <cancion>2.Birds</cancion>
+        <cancion>3.Hymn For The Weekend </cancion>
+        <cancion>4.Everglow</cancion>
+        <cancion>5.Adventure Of A Lifetime</cancion>
+        <cancion>6.Fun</cancion>
+        <cancion>7.Kaleidoscope</cancion>
+        <cancion>8.Army Of One</cancion>
+        <cancion>9.Amazing Day</cancion>
+        <cancion>10.Colour Spectrum</cancion>
+    </disco>
+</discos>
+
+Manuel Carrasco  /  Bailar el viento  /  2015
+----------------------------------------------
+1.Tambores de guerra
+2.Bailar el viento
+3.Ya no 
+4.Siendo uno mismo
+5.Uno x uno
+6.Pequeña sonrisa sonora
+7.Yo quiero vivir
+8.Amor planetario
+9.La voz de dentro
+10.No tengo prisa
+Coldplay  /  Head full of dreams  /  2015
+----------------------------------------------
+1.A Head Full Of Dreams
+2.Birds
+3.Hymn For The Weekend 
+4.Everglow
+5.Adventure Of A Lifetime
+6.Fun
+7.Kaleidoscope
+8.Army Of One
+9.Amazing Day
+10.Colour Spectrum
+

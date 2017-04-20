@@ -1,0 +1,67 @@
+#!/usr/bin/python -tt
+# -*- coding: utf-8 -*-
+
+import os,sys,xmlpp,shutil
+from argparse import ArgumentParser
+
+def no_modify(f_in,f_out):
+  if f_in != sys.stdin:
+      fich_in=open (f_in,'r')
+      texto=fich_in.read()
+      if f_out != sys.stdout:
+        fich_out=open (f_out,'w')
+        xmlpp.pprint(xml=texto,output=fich_out,indent=4,width=80)
+        fich_out.close()
+      else:
+        xmlpp.pprint(xml=texto,output=f_out,indent=4,width=80)
+      fich_in.close()
+  else:
+      if f_out != sys.stdout:
+        f_in=f_in.read()
+        xmlpp.pprint(xml=f_in,output=fich_out,indent=4,width=80)
+        fich_out.close()
+      else:
+        f_in=f_in.read()
+        xmlpp.pprint(xml=f_in,output=f_out,indent=4,width=80)
+
+def modify(f_in,f_out):
+  if f_in != sys.stdin:
+      fich_in=open (f_in,'r')
+      texto=fich_in.read()
+      aux=open ('auxiliar','w')
+      xmlpp.pprint(xml=texto,output=aux,indent=4,width=80)
+      aux.close()
+      fich_in.close()
+      fich_in=open (f_in,'w')
+      aux=open ('auxiliar','r')
+      for linea in aux:
+        fich_in.write(linea)
+      os.remove('auxiliar')
+      fich_in.close()
+      aux.close()
+  else:
+      f_in=f_in.read()
+      xmlpp.pprint(xml=f_in,output=fich_out,indent=4,width=80)
+      fich_out.close()
+
+def main():
+  parser = ArgumentParser()
+  parser.add_argument("fichero_in", help="Fichero a leer",default=sys.stdin,nargs="?")
+  parser.add_argument("fichero_out", help="Fichero para escribir la salida",default=sys.stdout,nargs="?")
+  parser.add_argument("-m","--modify",action="store_true", dest='modify',help="Dará formato al fichero original")
+  argumentos=parser.parse_args()
+
+  am=argumentos.modify
+  f_in=argumentos.fichero_in
+  f_out=argumentos.fichero_out
+
+  if am==False:
+    no_modify(f_in,f_out)
+  elif am==True and len(sys.argv)>3:
+    print "Recibido -m y un segundo argumento"
+    raise SystemExit
+  else:
+    modify(f_in,f_out)
+
+if __name__ == "__main__":
+  main()

@@ -1,0 +1,241 @@
+Práctica 4.1 jsoncheck, jsonpp
+_______________________________________________________________________________
+
+lorena@Lorena-PC:~/st/practica04$ jsonpp < holamundo.json
+[
+    {
+        "nombre": "Lorena", 
+        "apellido": "Bajo"
+    }, 
+    {
+        "nombre": "Nuria", 
+        "apellido": "Bajo"
+    }
+]
+
+lorena@Lorena-PC:~/st/practica04$ jsoncheck < holamundo.json
+Valid json
+
+_______________________________________________________________________________
+Práctica 4.2 coches.json
+_______________________________________________________________________________
+
+lorena@Lorena-PC:~/st/practica04$ jsonpp < coches.json
+[
+    {
+        "coches": [
+            {
+                "matricula": "1900 T", 
+                "modelo": "A4", 
+                "marca": "Audi"
+            }, 
+            {
+                "matricula": "0056 L", 
+                "modelo": "FF", 
+                "marca": "Ferrari"
+            }
+        ]
+    }
+]
+lorena@Lorena-PC:~/st/practica04$ jsoncheck < coches.json
+Valid json
+
+_______________________________________________________________________________
+Práctica 4.3 discoteca.json
+_______________________________________________________________________________
+
+lorena@Lorena-PC:~/st/practica04$ jsonpp < discoteca.json
+[
+    {
+        "Autor": "Manuel Carrasco", 
+        "Titulo": "Bailar el viento", 
+        "Publicacion": 2015, 
+        "Canciones": [
+            "Tambores de guerra", 
+            "Bailar el viento", 
+            "Ya no", 
+            "Siendo uno mismo", 
+            "Uno x uno", 
+            "Peque\u00f1a sonrisa sonora", 
+            "Yo quiero vivir", 
+            "Amor planetario", 
+            "La voz de dentro", 
+            "No tengo prisa"
+        ]
+    }, 
+    {
+        "Autor": "Coldplay", 
+        "Titulo": "Head full of dreams", 
+        "Publicacion": 2015, 
+        "Canciones": [
+            "A head full of dreams", 
+            "Bailar el viento", 
+            "Birds", 
+            "Hymn For The Weekend ", 
+            "Everglow", 
+            "Adventure Of A Lifetime", 
+            "Fun", 
+            "Kaleidoscope", 
+            "Army Of One", 
+            "Amazing Day", 
+            "Colour Spectrum"
+        ]
+    }
+]
+
+lorena@Lorena-PC:~/st/practica04$ jsoncheck < discoteca.json
+Valid json
+
+_______________________________________________________________________________
+Práctica 4.4 Fechas y horas en json
+_______________________________________________________________________________
+
+lorena@Lorena-PC:~/st/practica04$ ./fechas.py fechas.txt -t epoch -j
+{"1": "1262684480"}
+{"2": "1286022490"}
+{"3": "1022008561"}
+{"4": "1436762748"}
+{"5": "1162343262"}
+{"6": "1135276360"}
+{"7": "1373244136"}
+{"8": "1266577083"}
+{"9": "1320806949"}
+{"10": "1106564996"}
+{"11": "1317785242"}
+{"12": "1335907452"}
+{"13": "1361094295"}
+{"14": "1027264632"}
+{"15": "1271624290"}
+{"16": "1395682311"}
+{"17": "1312259280"}
+{"18": "1200490148"}
+{"19": "1315374464"}
+{"20": "1330372666"}
+{"21": "1193556200"}
+{"22": "988592215"}
+{"23": "1209779843"}
+{"24": "1456374110"}
+{"25": "1307411946"}
+{"26": "1271546579"}
+{"27": "1227539614"}
+{"28": "1338568721"}
+{"29": "1009637755"}
+{"30": "1044533649"}
+{"31": "1241900061"}
+{"32": "947171818"}
+{"33": "1014445860"}
+{"34": "1221217463"}
+{"35": "1251133959"}
+{"36": "1364499577"}
+{"37": "1402317159"}
+{"38": "1419629420"}
+{"39": "1022192834"}
+{"40": "1209805221"}
+
+_______________________________________________________________________________
+Práctica 4.5 papeleria.py
+_______________________________________________________________________________
+
+lorena@Lorena-PC:~/st/practica04$ ./papeleria.py ejemplo.json
+Ref.     Precio     Descripción
+-----------------------------------------
+869468    7.54      Caja 12 lápices
+968726    6.1       Papelera negra
+518196    5.4       Paquete 500 hojas A4
+
+
+_______________________________________________________________________________
+Práctica 4.6 inflacion.py
+_______________________________________________________________________________
+
+lorena@Lorena-PC:~/st/practica04$ ./inflacion.py
+[{"descripcion": "Caja 12 l\u00e1pices", "precio": 7.54, "ref": 869468}, {"descripcion": "Papelera negra", "precio": 6.1, "ref": 968726}, {"descripcion": "Paquete 500 hojas A4", "precio": 5.4, "ref": 518196}]
+Ref.     Precio     Descripción
+-----------------------------------------
+869468    7.7662       Caja 12 lápices
+968726    6.283       Papelera negra
+518196    5.562       Paquete 500 hojas A4
+
+_______________________________________________________________________________
+Práctica 4.7 papelería en xml 
+_______________________________________________________________________________
+
+lorena@Lorena-PC:~/st/practica04$ ./papeleria2xml.py
+[{"descripcion": "Caja 12 l\u00e1pices", "precio": 7.54, "ref": 869468}, {"descripcion": "Papelera negra", "precio": 6.1, "ref": 968726}, {"descripcion": "Paquete 500 hojas A4", "precio": 5.4, "ref": 518196}]
+<papeleria><objeto descripcion="Caja 12 lápices" precio="7.54" ref="869468" /><objeto descripcion="Papelera negra" precio="6.1" ref="968726" /><objeto descripcion="Paquete 500 hojas A4" precio="5.4" ref="518196" /></papeleria>
+
+Pasando este resultado por xmlpp y xmlcheck para comprobar que es correcto:
+
+lorena@Lorena-PC:~/st/practica04$ xmlpp resultado.xml
+<?xml version="1.1" encoding="UTF-8"?>
+<papeleria>
+    <objeto descripcion="Caja 12 lápices" precio="7.54" ref="869468" />
+    <objeto descripcion="Papelera negra" precio="6.1" ref="968726" />
+    <objeto descripcion="Paquete 500 hojas A4" precio="5.4" ref="518196" />
+</papeleria>
+lorena@Lorena-PC:~/st/practica04$ xmlcheck resultado.xml
+resultado.xml is a well-formed xml document
+
+_______________________________________________________________________________
+Práctica 4.8 Fechas en xml
+_______________________________________________________________________________
+
+lorena@Lorena-PC:~/st/practica04$ ./fechas.py fechas.txt -t epoch
+<instants city="timestamp"><instant date="1262684480" ordinal="1" /><instant date="1286022490" ordinal="2" /><instant date="1022008561" ordinal="3" /><instant date="1436762748" ordinal="4" /><instant date="1162343262" ordinal="5" /><instant date="1135276360" ordinal="6" /><instant date="1373244136" ordinal="7" /><instant date="1266577083" ordinal="8" /><instant date="1320806949" ordinal="9" /><instant date="1106564996" ordinal="10" /><instant date="1317785242" ordinal="11" /><instant date="1335907452" ordinal="12" /><instant date="1361094295" ordinal="13" /><instant date="1027264632" ordinal="14" /><instant date="1271624290" ordinal="15" /><instant date="1395682311" ordinal="16" /><instant date="1312259280" ordinal="17" /><instant date="1200490148" ordinal="18" /><instant date="1315374464" ordinal="19" /><instant date="1330372666" ordinal="20" /><instant date="1193556200" ordinal="21" /><instant date="988592215" ordinal="22" /><instant date="1209779843" ordinal="23" /><instant date="1456374110" ordinal="24" /><instant date="1307411946" ordinal="25" /><instant date="1271546579" ordinal="26" /><instant date="1227539614" ordinal="27" /><instant date="1338568721" ordinal="28" /><instant date="1009637755" ordinal="29" /><instant date="1044533649" ordinal="30" /><instant date="1241900061" ordinal="31" /><instant date="947171818" ordinal="32" /><instant date="1014445860" ordinal="33" /><instant date="1221217463" ordinal="34" /><instant date="1251133959" ordinal="35" /><instant date="1364499577" ordinal="36" /><instant date="1402317159" ordinal="37" /><instant date="1419629420" ordinal="38" /><instant date="1022192834" ordinal="39" /><instant date="1209805221" ordinal="40" /></instants>
+
+Pasando este resultado por xmlpp y xmlcheck para comprobar que es correcto:
+lorena@Lorena-PC:~/st/practica04$ xmlpp res_f.xml
+<?xml version="1.1" encoding="UTF-8"?>
+<instants city="timestamp">
+    <instant date="1262684480" ordinal="1" />
+    <instant date="1286022490" ordinal="2" />
+    <instant date="1022008561" ordinal="3" />
+    <instant date="1436762748" ordinal="4" />
+    <instant date="1162343262" ordinal="5" />
+    <instant date="1135276360" ordinal="6" />
+    <instant date="1373244136" ordinal="7" />
+    <instant date="1266577083" ordinal="8" />
+    <instant date="1320806949" ordinal="9" />
+    <instant date="1106564996" ordinal="10" />
+    <instant date="1317785242" ordinal="11" />
+    <instant date="1335907452" ordinal="12" />
+    <instant date="1361094295" ordinal="13" />
+    <instant date="1027264632" ordinal="14" />
+    <instant date="1271624290" ordinal="15" />
+    <instant date="1395682311" ordinal="16" />
+    <instant date="1312259280" ordinal="17" />
+    <instant date="1200490148" ordinal="18" />
+    <instant date="1315374464" ordinal="19" />
+    <instant date="1330372666" ordinal="20" />
+    <instant date="1193556200" ordinal="21" />
+    <instant date="988592215" ordinal="22" />
+    <instant date="1209779843" ordinal="23" />
+    <instant date="1456374110" ordinal="24" />
+    <instant date="1307411946" ordinal="25" />
+    <instant date="1271546579" ordinal="26" />
+    <instant date="1227539614" ordinal="27" />
+    <instant date="1338568721" ordinal="28" />
+    <instant date="1009637755" ordinal="29" />
+    <instant date="1044533649" ordinal="30" />
+    <instant date="1241900061" ordinal="31" />
+    <instant date="947171818" ordinal="32" />
+    <instant date="1014445860" ordinal="33" />
+    <instant date="1221217463" ordinal="34" />
+    <instant date="1251133959" ordinal="35" />
+    <instant date="1364499577" ordinal="36" />
+    <instant date="1402317159" ordinal="37" />
+    <instant date="1419629420" ordinal="38" />
+    <instant date="1022192834" ordinal="39" />
+    <instant date="1209805221" ordinal="40" />
+</instants>
+
+lorena@Lorena-PC:~/st/practica04$ xmlcheck res_f.xml
+res_f.xml is a well-formed xml document
+
+
+
+
+
+
+
+

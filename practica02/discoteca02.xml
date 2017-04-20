@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<discos>
+    <disco titulo="Bailar el viento" autor="Manuel Carrasco" publicacion="2015">
+        <cancion>1.Tambores de guerra</cancion>
+        <cancion>2.Bailar el viento</cancion>
+        <cancion>3.Ya no </cancion>
+        <cancion>4.Siendo uno mismo</cancion>
+        <cancion>5.Uno x uno</cancion>
+        <cancion>6.Pequeña sonrisa sonora</cancion>
+        <cancion>7.Yo quiero vivir</cancion>
+        <cancion>8.Amor planetario</cancion>
+        <cancion>9.La voz de dentro</cancion>
+        <cancion>10.No tengo prisa</cancion>
+    </disco>
+    <disco titulo="Head full of dreams" autor="Coldplay" publicacion="2015">
+        <cancion>1.A Head Full Of Dreams</cancion>
+        <cancion>2.Birds</cancion>
+        <cancion>3.Hymn For The Weekend </cancion>
+        <cancion>4.Everglow</cancion>
+        <cancion>5.Adventure Of A Lifetime</cancion>
+        <cancion>6.Fun</cancion>
+        <cancion>7.Kaleidoscope</cancion>
+        <cancion>8.Army Of One</cancion>
+        <cancion>9.Amazing Day</cancion>
+        <cancion>10.Colour Spectrum</cancion>
+    </disco>
+</discos>

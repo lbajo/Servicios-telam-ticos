@@ -1,0 +1,13 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<coches>
+    <coche
+	matricula="1900 T"
+	marca="Audi"
+	modelo="A4"
+/>
+    <coche
+matricula="0056 L"
+	marca="Ferrari"
+	modelo="FF"
+/>
+</coches>
